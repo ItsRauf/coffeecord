@@ -2,7 +2,7 @@
   "name": "coffeecord",
   "version": "0.0.1-alpha",
   "description": "Discord Library written in CoffeeScript",
-  "main": "index.coffee",
+  "main": "Constants.coffee",
   "author": "Rauf",
   "license": "MIT",
   "dependencies": {
