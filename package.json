@@ -1,0 +1,12 @@
+{
+  "name": "coffeecord",
+  "version": "0.0.1-alpha",
+  "description": "Discord Library written in CoffeeScript",
+  "main": "index.coffee",
+  "author": "Rauf",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ws": "^6.1.2"
+  }
+}
