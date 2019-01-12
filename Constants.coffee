@@ -1,3 +1,4 @@
 module.exports = 
   Client: require "./Client"
-  Embed: require "./Classes/Embed"
+  CommandClient: require "./CommandClient"
+  Embed: require "./src/Embed"

@@ -9,7 +9,7 @@ Discord Library written in CoffeeScript
 ```coffee
 CoffeeCord = require "coffeecord"
 
-Client = CoffeeCord.Client
+Client = CoffeeCord.Client token, options
 
 Client.on "ready", ->
   console.log "Ready", "Logged in as #{Client.user.username}##{Client.user.discriminator}"
@@ -21,4 +21,4 @@ Client.connect()
 
 ## Installation
 
-npm install @itsrauf/coffeecord
+npm install coffeecord

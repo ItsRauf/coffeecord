@@ -1,7 +1,7 @@
 # Classes
-_User = require "./Classes/User"
-_Guild = require "./Classes/Guild"
-_Message = require "./Classes/Message"
+_User = require "./src/User"
+_Guild = require "./src/Guild"
+_Message = require "./src/Message"
 http = require "./http"
 
 # Modules
@@ -17,14 +17,18 @@ _this = null
 class Client extends EE
   ###*
    * @param {String} token
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
   ###
   constructor: (token, options) ->
     super()
     this._connected = false
     this._token = token
-    this._options = options
+    if options?
+      this._options = options
+    else
+      this._options = 
+        status: {}
     this._heartbeat_interval = null
     this.session_id = null
     _this = this
