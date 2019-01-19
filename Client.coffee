@@ -30,7 +30,8 @@ class Client extends EE
       this._options = 
         status: {}
     this._heartbeat_interval = null
-    this.session_id = null
+    this._session_id = null
+    this.guilds = new Map()
     _this = this
   connect: ->
     Socket.on "open", () ->
@@ -67,7 +68,8 @@ class Client extends EE
             op: 1
             d: null
       if msg.op is 0
-        console.log msg.t
+        if _this._options.debug
+          console.log msg.t
         switch msg.t
           when "READY"
             _this.connected = true
@@ -76,6 +78,8 @@ class Client extends EE
             _this.emit "READY"
           when "MESSAGE_CREATE"
             message = new _Message msg.d
+            message.guild = _this.guilds.get message.guild_id
+            message.channel = message.guild.channels.get message.channel_id
             message.reply = message.reply.bind _this
             message.edit = message.edit.bind _this
             message.delete = message.delete.bind _this
@@ -84,8 +88,10 @@ class Client extends EE
             msg.d.members.map (user) ->
               user = new _User user.user
             guild = new _Guild msg.d
-            guild.channels.map (channel) ->
+            channels = [ ...guild.channels.values() ]
+            channels.map (channel) ->
               channel.send.bind _this
+            _this.guilds.set guild.id, guild
             _this.emit "GUILD_CREATE", guild
   ###*
    * Send a Message
